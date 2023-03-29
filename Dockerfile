@@ -413,6 +413,10 @@ function install_airflow_dependencies_from_branch_tip() {
     echo "${COLOR_BLUE}Uninstalling just airflow. Dependencies remain. Now target airflow can be reinstalled using mostly cached dependencies${COLOR_RESET}"
     echo
     pip uninstall --yes apache-airflow || true
+
+    echo "===pip== show installed pacakges ===="
+    pip list
+    echo "===pip== show installed pacakges ===="
 }
 
 common::get_colors
