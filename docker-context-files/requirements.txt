@@ -1,0 +1,3 @@
+apache-airflow[apache.spark]==2.5.1
+apache-airflow[zookeeper]==2.5.1
+apache-airflow[apache.sqoop]==2.5.1
