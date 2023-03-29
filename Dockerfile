@@ -75,20 +75,17 @@ FROM scratch as scripts
 # The content below is automatically copied from scripts/docker/install_jdk.sh
 COPY <<"EOF" /install_jdk.sh
 set -euo pipefail
-
-    install_jdk() {
-        # install jdk
-        apt-get update
-        apt-get install -y openjdk-8-jdk
-        echo '==========openjdk-8-jdk installed ======='
-        java -version
-        echo '==========openjdk-8-jdk installed ======='
-        JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
-        export JAVA_HOME
-    }
-
-    install_jdk
-
+install_jdk() {
+    # install jdk
+    apt-get update
+    apt-get install -y openjdk-8-jdk
+    echo '==========openjdk-8-jdk installed ======='
+    java -version
+    echo '==========openjdk-8-jdk installed ======='
+    JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+    export JAVA_HOME
+}
+install_jdk
 EOF
 
 
