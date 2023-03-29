@@ -20,12 +20,11 @@ set -euo pipefail
 install_jdk() {
     # install jdk
     apt-get update
-    apt-get install -y openjdk-8-jdk
-    echo '==========openjdk-8-jdk installed ======='
+    apt-get install -y --no-install-recommends  openjdk-17-jre openjdk-17-jdk
+    echo '==========openjdk-11-jdk installed ======='
     java -version
-    echo '==========openjdk-8-jdk installed ======='
-    JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+    echo '==========openjdk-11-jdk installed ======='
+    JAVA_HOME="/usr/lib/jvm/java-11-openjdk-amd64/" 
     export JAVA_HOME
 }
-
 install_jdk
