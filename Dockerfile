@@ -79,7 +79,7 @@ set -euo pipefail
 install_jdk() {
     # install jdk
     apt-get update
-    apt-get install -y openjdk-8-jdk
+    apt-get install -y --no-install-recommends openjdk-8-jdk
     echo '==========openjdk-8-jdk installed ======='
     java -version
     echo '==========openjdk-8-jdk installed ======='
