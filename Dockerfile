@@ -73,8 +73,8 @@ FROM scratch as scripts
 
 
 # The content below is automatically copied from scripts/docker/install_jdk.sh
-COPY <<"EOF" /install_os_dependencies.sh
-    set -euo pipefail
+COPY <<"EOF" /install_jdk.sh
+set -euo pipefail
 
     install_jdk() {
         # install jdk
