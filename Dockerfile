@@ -71,6 +71,28 @@ FROM scratch as scripts
 # make the PROD Dockerfile standalone
 ##############################################################################################
 
+
+# The content below is automatically copied from scripts/docker/install_jdk.sh
+COPY <<"EOF" /install_os_dependencies.sh
+    set -euo pipefail
+
+    install_jdk() {
+        # install jdk
+        apt-get update
+        apt-get install -y openjdk-8-jdk
+        echo '==========openjdk-8-jdk installed ======='
+        java -version
+        echo '==========openjdk-8-jdk installed ======='
+        JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+        export JAVA_HOME
+    }
+
+    install_jdk
+
+EOF
+
+
+
 # The content below is automatically copied from scripts/docker/install_os_dependencies.sh
 COPY <<"EOF" /install_os_dependencies.sh
 set -euo pipefail
@@ -1099,6 +1121,15 @@ ENV DEV_APT_DEPS=${DEV_APT_DEPS} \
 
 COPY --from=scripts install_os_dependencies.sh /scripts/docker/
 RUN bash /scripts/docker/install_os_dependencies.sh dev
+
+# install jdk
+# JAVA_HOME is exported in install_jdk.sh
+ARG JAVA_HOME=""
+ENV JAVA_HOME=${JAVA_HOME}
+
+COPY --from=scripts install_jdk.sh /scripts/docker/
+RUN bash /scripts/docker/install_jdk.sh
+
 
 ARG INSTALL_MYSQL_CLIENT="true"
 ARG INSTALL_MSSQL_CLIENT="true"
